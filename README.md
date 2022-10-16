@@ -1,3 +1,23 @@
+[![](https://jitpack.io/v/itsnotoger/vlcj-old-experimental.svg)](https://jitpack.io/#itsnotoger/vlcj-old-experimental)
+
+## Fork Information ##
+This forks maintains an old experimental branch of VLCJ. This was the first branch to offer direct access to the ByteBuffer when using JavaFX.
+There is no reason to use this over the current VLCJ, which offers the same JavaFX support under a new API. I'm only using this to maintain legacy code.
+
+```kotlin
+repositories {
+    mavenCentral()
+    maven("https://jitpack.io")
+}
+dependencies {
+    implementation("com.github.itsnotoger:vlcj-old-experimental:3.10.2")
+}
+```
+
+
+
+## Original readme ##
+
 ![vlcj](https://github.com/caprica/vlcj/raw/master/etc/vlcj-logo.png "vlcj")
 
 vlcj-5 requires VLC 4.0 as a minimum baseline - VLC 4.0 is currently in development and it may be some time before
