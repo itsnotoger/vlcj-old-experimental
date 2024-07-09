@@ -39,7 +39,7 @@ import com.sun.jna.Memory;
 /**
  * Encapsulation of a direct-rendering media player.
  * <p>
- * The default behaviour is to provide the video data via the {@link #display(DirectMediaPlayer, Memory[], BufferFormat)} method.
+ * The default behaviour is to provide the video data via the {@link #display(DirectMediaPlayer, ByteBuffer[], BufferFormat)}} method.
  * <p>
  * Sub-classes may override this method to implement their own processing, or alternately return an
  * implementation of a {@link RenderCallback} by overriding the {@link #onGetRenderCallback()}

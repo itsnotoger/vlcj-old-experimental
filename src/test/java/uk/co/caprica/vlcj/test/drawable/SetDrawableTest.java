@@ -28,7 +28,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.awt.peer.ComponentPeer;
+//import java.awt.peer.ComponentPeer;
 import java.lang.reflect.Method;
 
 import javax.swing.ImageIcon;
@@ -296,21 +296,20 @@ public class SetDrawableTest extends VlcjTest {
         }
     }
 
-    @SuppressWarnings("deprecation")
     private void dump(String s, Canvas c) {
         System.out.println();
         System.out.println(s);
         System.out.println("        component: " + c);
-        System.out.println("   component peer: " + c.getPeer());
+//        System.out.println("   component peer: " + c.getPeer());
         System.out.println("component pointer: " + Native.getComponentPointer(c));
         System.out.println("   native pointer: " + Pointer.nativeValue(Native.getComponentPointer(c)));
         System.out.println("     component id: " + Native.getComponentID(c));
-        try {
-            System.out.println("     view pointer: " + getViewPointer(c));
-        }
-        catch(Throwable t) {
-            System.out.println("     view pointer: " + t.getMessage());
-        }
+//        try {
+//            System.out.println("     view pointer: " + getViewPointer(c));
+//        }
+//        catch(Throwable t) {
+//            System.out.println("     view pointer: " + t.getMessage());
+//        }
         System.out.println();
     }
 
@@ -329,18 +328,18 @@ public class SetDrawableTest extends VlcjTest {
      */
     private long getViewPointer(Component component) {
         try {
-            @SuppressWarnings("deprecation")
-            ComponentPeer peer = component.getPeer();
-            Method method = peer.getClass().getMethod("getViewPtr");
-            Object result = method.invoke(peer);
-            System.out.println("result: " + result);
-            if(result != null) {
-                System.out.println("class: " + result.getClass());
-                return Long.parseLong(result.toString());
-            }
-            else {
-                throw new RuntimeException("Failed to get view pointer for " + component);
-            }
+            throw new UnsupportedOperationException("alternative for getPeer() needed here");
+//            ComponentPeer peer = component.getPeer();
+//            Method method = peer.getClass().getMethod("getViewPtr");
+//            Object result = method.invoke(peer);
+//            System.out.println("result: " + result);
+//            if(result != null) {
+//                System.out.println("class: " + result.getClass());
+//                return Long.parseLong(result.toString());
+//            }
+//            else {
+//                throw new RuntimeException("Failed to get view pointer for " + component);
+//            }
         }
         catch(Throwable t) {
             throw new RuntimeException(t);

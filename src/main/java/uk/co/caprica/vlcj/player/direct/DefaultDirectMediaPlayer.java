@@ -26,7 +26,6 @@ import java.util.concurrent.Semaphore;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import sun.nio.ch.DirectBuffer;
 import uk.co.caprica.vlcj.binding.LibVlc;
 import uk.co.caprica.vlcj.binding.internal.libvlc_display_callback_t;
 import uk.co.caprica.vlcj.binding.internal.libvlc_instance_t;
@@ -216,7 +215,7 @@ public class DefaultDirectMediaPlayer extends DefaultMediaPlayer implements Dire
             byte[] chromaBytes = bufferFormat.getChroma().getBytes();
             // Space for these structures is already allocated by libvlc, we
             // simply fill the existing memory
-            chroma.getPointer().write(0, chromaBytes, 0, chromaBytes.length > 4 ? 4 : chromaBytes.length);
+            chroma.getPointer().write(0, chromaBytes, 0, Math.min(chromaBytes.length, 4));
             width.setValue(bufferFormat.getWidth());
             height.setValue(bufferFormat.getHeight());
             int[] pitchValues = bufferFormat.getPitches();
@@ -228,10 +227,11 @@ public class DefaultDirectMediaPlayer extends DefaultMediaPlayer implements Dire
             // the alignment needs to be changed)
             nativeBuffers = new ByteBuffer[bufferFormat.getPlaneCount()];
             pointers = new Pointer[bufferFormat.getPlaneCount()];
-            for(int i = 0; i < bufferFormat.getPlaneCount(); i ++ ) {
+            for(int i = 0; i < bufferFormat.getPlaneCount(); i++) {
                 ByteBuffer buffer = ByteBufferFactory.allocateAlignedBuffer(pitchValues[i] * lineValues[i]);
                 nativeBuffers[i] = buffer;
-                pointers[i] = Pointer.createConstant(((DirectBuffer) buffer).address());
+                long address = ByteBufferFactory.getDirectBufferAddress(buffer);
+                pointers[i] = Pointer.createConstant(address);
             }
             logger.trace("format finished");
             return pitchValues.length;

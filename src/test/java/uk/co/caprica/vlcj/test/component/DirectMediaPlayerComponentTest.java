@@ -46,11 +46,11 @@ import uk.co.caprica.vlcj.test.VlcjTest;
  * Basic test showing how to use a direct media player component.
  * <p>
  * This test shows how to render the video buffer into a {@link JComponent} via a
- * {@link BufferedImage} inside a {@link RenderCallbackAdapter}.
+ * {@link BufferedImage} inside a RenderCallbackAdapter.
  * <p>
  * Some applications may like to access the native video buffer directly by
- * overriding {@link DirectMediaPlayerComponent#display(com.sun.jna.Memory)} or
- * providing an implementation of a {@link RenderCallback} via {@link DirectMediaPlayerComponent#onGetRenderCallback}.
+ * overriding {@link DirectMediaPlayerComponent#display(DirectMediaPlayer, ByteBuffer[], BufferFormat)} or
+ * providing an implementation of a {@link RenderCallback} via {@link DirectMediaPlayerComponent#onGetRenderCallback()}.
  * <p>
  * This test also shows how to paint a lightweight overlay on top of the video.
  */

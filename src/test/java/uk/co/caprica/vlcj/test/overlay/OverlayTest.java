@@ -44,7 +44,6 @@ import uk.co.caprica.vlcj.player.embedded.EmbeddedMediaPlayer;
 import uk.co.caprica.vlcj.runtime.x.LibXUtil;
 import uk.co.caprica.vlcj.test.VlcjTest;
 
-import com.sun.awt.AWTUtilities;
 import com.sun.jna.platform.WindowUtils;
 
 /**
@@ -143,7 +142,7 @@ public class OverlayTest extends VlcjTest {
         public Overlay(Window owner) {
             super(owner, WindowUtils.getAlphaCompatibleGraphicsConfiguration());
 
-            AWTUtilities.setWindowOpaque(this, false);
+            this.setBackground(new Color(0,0,0,0));
 
             setLayout(null);
 

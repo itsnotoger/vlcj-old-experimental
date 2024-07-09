@@ -26,11 +26,12 @@ import java.util.List;
 import com.sun.jna.Structure;
 import com.sun.jna.platform.win32.WinDef.DWORD;
 import com.sun.jna.platform.win32.WinDef.RECT;
+import com.sun.jna.platform.win32.WinUser;
 
 /**
  * Encapsulation of native monitor information.
  */
-public class MONITORINFO extends Structure {
+public class MONITORINFO extends WinUser.MONITORINFO {
 
     /**
      *
@@ -45,7 +46,7 @@ public class MONITORINFO extends Structure {
     }
 
     @Override
-    protected List<?> getFieldOrder() {
+    protected List<String> getFieldOrder() {
         return FIELD_ORDER;
     }
 

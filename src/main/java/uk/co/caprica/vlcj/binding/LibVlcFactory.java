@@ -162,6 +162,7 @@ public class LibVlcFactory {
         }
         // Synchronised or not...
         try {
+//        	if (true) throw new UnsatisfiedLinkError("Simulated Exception");//XXX
             LibVlc instance = synchronise ? LibVlc.SYNC_INSTANCE : LibVlc.INSTANCE;
             // Logged...
             if(log) {
